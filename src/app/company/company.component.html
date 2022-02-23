@@ -1,0 +1,463 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+  />
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="view-title">
+        View All Registered Company Details
+        <span class="example-spacer"></span>
+        <mat-icon class="view-icon">visibility</mat-icon>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Company Code</td>
+          <td>Company Name</td>
+          <td>Company Ceo</td>
+          <td>TurnOver (in Cr)</td>
+          <td>WebSite</td>
+          <td>StockExchange</td>
+          <td>StockPrice</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="table-row" *ngFor="let rowData of companyArr">
+          <td>{{ rowData.companyCode }}</td>
+          <td>{{ rowData.companyName }}</td>
+          <td>{{ rowData.companyCeo }}</td>
+          <td>{{ rowData.turnOver }}</td>
+          <td>{{ rowData.companyWebsite }}</td>
+          <td>{{ rowData.stockExchange }}</td>
+          <td>{{ rowData.stockPrice }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-expansion-panel>
+  <section>
+    <div>
+      <form #login="ngForm" (ngSubmit)="completeLogin(login)">
+        <div class="company-container">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Register Company </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="company-input">
+              <div class="company-companycode">
+                <mat-form-field class="text">
+                  <input
+                    matInput
+                    placeholder="Enter the Company Code"
+                    name="companyCode"
+                    [(ngModel)]="companyModel.companyCode"
+                    required
+                  />
+                  <button
+                    mat-button
+                    *ngIf="companyModel.companyCode"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="companyModel.companyCode = ''"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class="company-companyName">
+                <mat-form-field class="text">
+                  <input
+                    matInput
+                    type="text"
+                    placeholder="Enter the Company Name"
+                    name="companyName"
+                    [(ngModel)]="companyModel.companyName"
+                    required
+                  />
+                  <button
+                    mat-button
+                    *ngIf="companyModel.companyName"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="companyModel.companyName = ''"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class="company-companyCeo">
+                <mat-form-field class="text">
+                  <input
+                    matInput
+                    type="text"
+                    placeholder="Enter the Company Ceo"
+                    name="companyCeo"
+                    [(ngModel)]="companyModel.companyCeo"
+                    required
+                  />
+                  <button
+                    mat-button
+                    *ngIf="companyModel.companyCeo"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="companyModel.companyCeo = ''"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class="company-turnOver">
+                <mat-form-field class="text">
+                  <input
+                    matInput
+                    type="number"
+                    placeholder="Enter the Company Turnover in Crores"
+                    name="turnOver"
+                    [(ngModel)]="companyModel.turnOver"
+                    required
+                  />
+                  <button
+                    mat-button
+                    *ngIf="companyModel.turnOver"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="companyModel.turnOver = 0"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class="company-Website">
+                <mat-form-field class="text">
+                  <input
+                    matInput
+                    type="email"
+                    placeholder="Enter the Company Website"
+                    name="companyWebsite"
+                    [(ngModel)]="companyModel.companyWebsite"
+                    required
+                  />
+                  <button
+                    mat-button
+                    *ngIf="companyModel.companyWebsite"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="companyModel.companyWebsite = ''"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class="company-StockExchange">
+                <mat-form-field class="text">
+                  <input
+                    matInput
+                    placeholder="Enter the Company StockExchange"
+                    name="stockExchange"
+                    [(ngModel)]="companyModel.stockExchange"
+                    required
+                  />
+                  <button
+                    mat-button
+                    *ngIf="companyModel.stockExchange"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="companyAddStock.stockExchange = ''"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <mat-action-row>
+                <div class="container-fluid padding">
+                  <div class="row">
+                    <div class="edit">
+                      <button
+                        type="submit"
+                        class="register-button"
+                        mat-raised-button
+                        color="primary"
+                        (click)="registerCompany()"
+                      >
+                        Register
+                      </button>
+                      <button
+                        class="clear-button"
+                        mat-raised-button
+                        color="warn"
+                        (click)="completeLogin(login)"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </mat-action-row>
+            </div>
+          </mat-expansion-panel>
+        </div>
+      </form>
+      <div class="delete-company">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            Delete Company
+          </mat-expansion-panel-header>
+          <div class="company-companyCode">
+            <mat-form-field class="text">
+              <input
+                matInput
+                placeholder="Enter the Company Code"
+                name="companyCode"
+                [(ngModel)]="companyDel.companyCode"
+                required
+              />
+              <button
+                mat-button
+                *ngIf="companyDel.companyCode"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="companyDel.companyCode = ''"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <mat-action-row>
+            <div class="container-fluid padding">
+              <div class="row">
+                <div class="col-md-2">
+                  <button
+                    mat-raised-button
+                    color="warn"
+                    (click)="deleteCompany(companyDel.companyCode)"
+                  >
+                    Delete
+                    <mat-icon class="delicon">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </div>
+      <div class="get-company">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Get Company Details</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="company-companyCode">
+            <mat-form-field class="text">
+              <input
+                matInput
+                placeholder="Enter the Company Code"
+                name="companyCode"
+                [(ngModel)]="companyGet.companyCode"
+                required
+              />
+              <button
+                mat-button
+                *ngIf="companyGet.companyCode"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="companyGet.companyCode = ''"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <mat-action-row>
+            <div class="container-fluid padding">
+              <div class="row">
+                <div class="col-md-2" style="margin-left: 60px">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="getCompany(companyGet.companyCode)"
+                  >
+                    Get Company Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-action-row>
+          <table class="table">
+            <thead>
+              <tr>
+                <td>Company Code</td>
+                <td>Company Name</td>
+                <td>Company Ceo</td>
+                <td>TurnOver (in Cr)</td>
+                <td>WebSite</td>
+                <td>StockExchange</td>
+                <td>StockPrice</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-row">
+                <td>{{ companyGet.companyCode }}</td>
+                <td>{{ companyGet.companyName }}</td>
+                <td>{{ companyGet.companyCeo }}</td>
+                <td>{{ companyGet.turnOver }}</td>
+                <td>{{ companyGet.companyWebsite }}</td>
+                <td>{{ companyGet.stockExchange }}</td>
+                <td>{{ companyGet.stockPrice }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </div>
+      <div class="add-stock">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            Add Stock Price
+          </mat-expansion-panel-header>
+          <div class="company-companyCode">
+            <mat-form-field class="text">
+              <input
+                matInput
+                placeholder="Enter the Company Code"
+                name="companyCode"
+                [(ngModel)]="companyModel.companyCode"
+                required
+              />
+              <button
+                mat-button
+                *ngIf="companyModel.companyCode"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="companyModel.companyCode = ''"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div class="company-stockPrice">
+            <mat-form-field class="text">
+              <input
+                matInput
+                type="number"
+                placeholder="Enter the Stock Price"
+                name="stockPrice"
+                [(ngModel)]="companyModel.stockPrice"
+                required
+              />
+              <button
+                mat-button
+                *ngIf="companyModel.stockPrice"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="companyModel.stockPrice = 0"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <mat-action-row>
+            <div class="container-fluid padding">
+              <div class="row">
+                <div class="col-md-2">
+                  <button
+                    class="add-buttton"
+                    mat-raised-button
+                    color="primary"
+                    (click)="addStockPrice(companyModel.companyCode)"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </div>
+      <div class="update-stock">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            Update Stock Price
+          </mat-expansion-panel-header>
+          <div class="company-companyCode">
+            <mat-form-field class="text">
+              <input
+                matInput
+                placeholder="Enter the Company Code"
+                name="companyCode"
+                [(ngModel)]="companyModel.companyCode"
+                required
+              />
+              <button
+                mat-button
+                *ngIf="companyModel.companyCode"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="companyModel.companyCode = ''"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div class="company-stockPrice">
+            <mat-form-field class="text">
+              <input
+                matInput
+                placeholder="Enter the Stock Price"
+                name="stockPrice"
+                [(ngModel)]="companyModel.stockPrice"
+                required
+              />
+              <button
+                mat-button
+                *ngIf="companyUpdateStock.stockPrice"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="companyModel.stockPrice = 0"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <mat-action-row>
+            <div class="container-fluid padding">
+              <div class="row">
+                <div class="col-md-2">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="updateStockPrice(companyModel.companyCode)"
+                  >
+                    Update
+                    <mat-icon class="updateicon">update</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </section>
+</body>

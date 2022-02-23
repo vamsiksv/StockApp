@@ -1,0 +1,18 @@
+.example-spacer {
+  flex: auto;
+}
+.home-icon {
+  font-size: 27px;
+}
+.main-header {
+  font-size: 25px;
+}
+.main-header,
+.home-icon {
+  vertical-align: -webkit-baseline-middle;
+  line-height: 5px;
+}
+
+.example-icon {
+  justify-content: space-around;
+}

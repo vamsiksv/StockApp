@@ -1,0 +1,30 @@
+.text {
+  width: 250px;
+}
+.delicon,
+.col-md-2 .view-title {
+  justify-content: space-between;
+}
+.view-icon {
+  float: right;
+}
+.delicon,
+.updateicon {
+  font-size: large;
+}
+.edit {
+  text-align: center;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+}
+.row {
+  text-align: center;
+}
+.register-button,
+.clear-button {
+  display: inline-block;
+}
+.example-spacer {
+  flex: auto;
+}
