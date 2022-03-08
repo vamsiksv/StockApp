@@ -1,0 +1,48 @@
+<button mat-button class="close-icon" [mat-dialog-close]="true">
+  <mat-icon>close</mat-icon>
+</button>
+<div mat-dialog-title class="flex-container">
+  <h4>Provide the below Required Details</h4>
+</div>
+
+<div mat-dialog-content>
+  <form #login="ngForm" (ngSubmit)="completeLogin(login)">
+    <div class="company-companycode">
+      <mat-form-field class="text">
+        <input
+          matInput
+          placeholder="Enter the Stock Price"
+          name="stockPrice"
+          [(ngModel)]="companyModel.stockPrice"
+          required
+          autocomplete="off"
+        />
+        <button
+          mat-button
+          *ngIf="companyModel.stockPrice"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="companyModel.stockPrice = 0"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <mat-action-row>
+      <div class="container-fluid padding">
+        <div class="row">
+          <button
+            type="submit"
+            class="register-button"
+            mat-raised-button
+            color="primary"
+            (click)="addStockPrice(companyModel.companyCode)"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </mat-action-row>
+  </form>
+</div>

@@ -1,0 +1,32 @@
+mat-form-field {
+  width: 70%;
+}
+.example-spacer {
+  flex: auto;
+}
+
+.close-icon {
+  float: right;
+  top: -24px;
+  right: -24px;
+}
+
+.text {
+  width: 180x;
+}
+.row {
+  text-align: center;
+}
+.register-button {
+  margin-right: auto;
+}
+.example-spacer {
+  flex: auto;
+}
+
+.edit {
+  text-align: center;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+}

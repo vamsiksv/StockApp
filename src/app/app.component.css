@@ -16,3 +16,12 @@
 .example-icon {
   justify-content: space-around;
 }
+
+.toolbar {
+  background-color: black;
+  color: white;
+}
+.register {
+  background-color: white;
+  color: black;
+}
